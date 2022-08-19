@@ -60,6 +60,17 @@ class Vec3 {
     z -= L * floor(z / L);
   }
 
+  // dot product
+  double ScalarProduct(const Vec3& right) const{
+    return sqrt( x * right.x + y * right.y + z * right.z);
+  }
+
+  Vec3 CrossProduct(const Vec3& right) const {
+    return Vec3(y * right.z - z * right.y,
+                z * right.x - x * right.z,
+                x * right.y - y * right.x);
+  }
+
   // operators
   Vec3 operator+=(const Vec3& r) {
     x += r.x; y += r.y; z += r.z;
