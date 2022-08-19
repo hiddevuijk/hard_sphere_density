@@ -1,5 +1,5 @@
 TARGET = test.exe
-OBJS = main.o xyz.o
+OBJS = main.o
 CC = g++
 #CFLAGS = -c -Wall -g -std=c++11
 #LFLAGS = -Wall -g
@@ -9,10 +9,8 @@ LFLAGS = -Wall -O3 -DNDEBUG
 $(TARGET): $(OBJS)
 	$(CC) $(LFLAGS)  $(OBJS) -o $(TARGET)
 
-xyz.o: xyz.cpp xyz.h
-	$(CC) $(CFLAGS) xyz.cpp
 
-main.o: main.cpp xyz.h
+main.o: main.cpp vec3.h
 	$(CC) $(CFLAGS) main.cpp
 
 
