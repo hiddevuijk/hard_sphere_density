@@ -38,9 +38,10 @@ class Vec3 {
     z *= d / l;
   }
 
+
   // dot product
-  double ScalarProduct(const Vec3& right) const{
-    return sqrt( x * right.x + y * right.y + z * right.z);
+  double DotProduct(const Vec3& right) const{
+    return x * right.x + y * right.y + z * right.z;
   }
 
   Vec3 CrossProduct(const Vec3& right) const {
