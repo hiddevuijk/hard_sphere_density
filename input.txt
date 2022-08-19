@@ -1,2 +1,6 @@
-a = 1.
-b = 2.
+seed = 123456789
+number_of_particles = 10
+system_size_xy = 20
+max_mc_step_size = 1.0
+verlet_list_radius = 1.0
+
