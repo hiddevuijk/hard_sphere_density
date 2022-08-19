@@ -38,28 +38,6 @@ class Vec3 {
     z *= d / l;
   }
 
-  // apply periodic boundary conditions for a square box with size L 
-  // and the origin at the bottom left corner
-  void PeriodicBoundaryCondition(double L) {
-    x -= L * floor(x / L);
-    y -= L * floor(y / L);
-    z -= L * floor(z / L);
-  }
-    
-
-  // apply periodic boundary condition in one direction
-  void PeriodicBoundaryX(double L) {
-    x -= L * floor(x / L);
-  }
-
-  void PeriodicBoundaryY(double L) {
-    y -= L * floor(y / L);
-  }
-
-  void PeriodicBoundaryZ(double L) {
-    z -= L * floor(z / L);
-  }
-
   // dot product
   double ScalarProduct(const Vec3& right) const{
     return sqrt( x * right.x + y * right.y + z * right.z);
