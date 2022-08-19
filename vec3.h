@@ -100,58 +100,59 @@ class Vec3 {
 //
 ////////////////////////////////////////
 
-std::ostream& operator<<(std::ostream& out_stream, const Vec3& r) {
-  out_stream << r.x << '\t' << r.y << '\t' << r.z;
-  return out_stream;
-}
+//std::ostream& operator<<(std::ostream& out_stream, const Vec3& r) {
+//  out_stream << r.x << '\t' << r.y << '\t' << r.z;
+//  return out_stream;
+//}
+//
 
 // math operators, defined elementwise
 Vec3 operator+(const Vec3& left, const Vec3& right) {
   return Vec3(left.x + right.x, left.y + right.y, left.z + right.z);
 }
 
-Vec3 operator+(const Vec3& left, const double& right) {
-  return Vec3(left.x + right, left.y + right, left.z + right);
-}
-
-Vec3 operator+(const double& left, const Vec3& right) {
-  return Vec3(left + right.x, left + right.y, left + right.z);
-}
-
-Vec3 operator-(const Vec3& left, const Vec3& right) {
-  return Vec3(left.x - right.x, left.y - right.y, left.z - right.z);
-}
-
-Vec3 operator-(const Vec3& left, const double& right) {
-  return Vec3(left.x - right, left.y - right, left.z - right);
-}
-
-Vec3 operator-(const double& left, const Vec3& right) {
-  return Vec3(left - right.x,left - right.y, left - right.z);
-}
-
-Vec3 operator*(const Vec3& left, const Vec3& right) {
-  return Vec3(left.x * right.x , left.y * right.y, left.z * right.z);
-}
-
-Vec3 operator*(const Vec3&left, const double& right) {
-  return Vec3(left.x * right, left.y * right, left.z * right);
-}
-
-Vec3 operator*(const double& left, const Vec3& right) {
-  return Vec3(left * right.x, left * right.y, left * right.z);
-}
-
-Vec3 operator/(const Vec3& left, const Vec3& right) {
-  return Vec3(left.x / right.x , left.y / right.y, left.z / right.z);
-}
-
-Vec3 operator/(const Vec3&left, const double& right) {
-  return Vec3(left.x / right, left.y / right, left.z / right);
-}
-
-Vec3 operator/(const double& left, const Vec3& right) {
-  return Vec3(left / right.x, left / right.y, left / right.z);
-}
+//Vec3 operator+(const Vec3& left, const double& right) {
+//  return Vec3(left.x + right, left.y + right, left.z + right);
+//}
+//
+//Vec3 operator+(const double& left, const Vec3& right) {
+//  return Vec3(left + right.x, left + right.y, left + right.z);
+//}
+//
+//Vec3 operator-(const Vec3& left, const Vec3& right) {
+//  return Vec3(left.x - right.x, left.y - right.y, left.z - right.z);
+//}
+//
+//Vec3 operator-(const Vec3& left, const double& right) {
+//  return Vec3(left.x - right, left.y - right, left.z - right);
+//}
+//
+//Vec3 operator-(const double& left, const Vec3& right) {
+//  return Vec3(left - right.x,left - right.y, left - right.z);
+//}
+//
+//Vec3 operator*(const Vec3& left, const Vec3& right) {
+//  return Vec3(left.x * right.x , left.y * right.y, left.z * right.z);
+//}
+//
+//Vec3 operator*(const Vec3&left, const double& right) {
+//  return Vec3(left.x * right, left.y * right, left.z * right);
+//}
+//
+//Vec3 operator*(const double& left, const Vec3& right) {
+//  return Vec3(left * right.x, left * right.y, left * right.z);
+//}
+//
+//Vec3 operator/(const Vec3& left, const Vec3& right) {
+//  return Vec3(left.x / right.x , left.y / right.y, left.z / right.z);
+//}
+//
+//Vec3 operator/(const Vec3&left, const double& right) {
+//  return Vec3(left.x / right, left.y / right, left.z / right);
+//}
+//
+//Vec3 operator/(const double& left, const Vec3& right) {
+//  return Vec3(left / right.x, left / right.y, left / right.z);
+//}
 
 #endif
