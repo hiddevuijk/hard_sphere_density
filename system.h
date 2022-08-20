@@ -104,7 +104,7 @@ System::System(
 	double verlet_list_radius,
 	double max_diff)
   : uniform_distribution_(-1,1),
-    random_int_distribution_(0, number_of_particles),
+    random_int_distribution_(0, number_of_particles - 1),
 	random_number_generator_(seed),
 	random_uniform_distribution_11_(random_number_generator_,
 							     uniform_distribution_),
