@@ -31,7 +31,8 @@ class System {
 		   double system_size_xy,
 		   double max_mc_step_size,
 		   double verlet_list_radius,
-		   double max_diff);
+		   double max_diff,
+		   double A);
   void SavePositions(std::string name) const;		    
   // attempt an MC move
   void MCMove();
@@ -45,6 +46,8 @@ class System {
 	}
   }
 
+  void SetPotential(double newA) { A_ = newA; }
+  double getPotential() const { return A_; }
  private:
 	// uniform distribution [-1,1]
 	const boost::uniform_real<double> uniform_distribution_;
@@ -88,6 +91,8 @@ class System {
 	// is larger than max_diff_, the Verlet list needs to be updated
 	double max_diff_;	
 
+	// externale potential: U(z) = A_ * z * z
+	double A_;
 
 	// keep track of the performance of the MC algorithm
 	unsigned long int number_of_attempted_moves_;
@@ -102,7 +107,8 @@ System::System(
 	double system_size_xy,
 	double max_mc_step_size,
 	double verlet_list_radius,
-	double max_diff)
+	double max_diff,
+	double A)
   : uniform_distribution_(-1,1),
     random_int_distribution_(0, number_of_particles - 1),
 	random_number_generator_(seed),
@@ -118,7 +124,8 @@ System::System(
     positions_at_last_update_(number_of_particles_),
 	verlet_list_(number_of_particles_,
 				std::vector<int>(number_of_particles)),
-	max_diff_(max_diff)
+	max_diff_(max_diff),
+	A_(A)
 {
   RandomInit();
   UpdateVerletList();
@@ -193,8 +200,8 @@ void System::MCMoveNoVerlet()
 	}
   }
   if (!overlap) {
-    double delta_U = positions_[i].z * positions_[i].z;   
-	delta_U -= new_position.z * new_position.z;
+    double delta_U = new_position.z * new_position.z;
+    delta_U -= positions_[i].z * positions_[i].z;   
 	if( random_uniform_distribution_01_() < std::exp(- delta_U ) ) {
 		positions_[i] = new_position;
 
