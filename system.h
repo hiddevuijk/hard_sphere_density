@@ -33,6 +33,18 @@ class System {
 		   double verlet_list_radius,
 		   double max_diff);
   void SavePositions(std::string name) const;		    
+  // attempt an MC move
+  void MCMove();
+  // attempt an MC move without using the Verlet list
+  void MCMoveNoVerlet();		
+
+  // make number_of_paricles_ MC move attempts
+  void MCMoveNoVerletFull() {
+    for (unsigned int i = 0; i < number_of_particles_; ++i) {
+      MCMoveNoVerlet();
+	}
+  }
+
  private:
 	// uniform distribution [-1,1]
 	const boost::uniform_real<double> uniform_distribution_;
@@ -51,17 +63,6 @@ class System {
 	void UpdateVerletList();
 
 
-	// attempt an MC move
-	void MCMove();
-	// attempt an MC move without using the Verlet list
-	void MCMoveNoVerlet();		
-
-    // make number_of_paricles_ MC move attempts
-	void MCMoveNoVerletFull() {
-	 for (unsigned int i = 0; i < number_of_particles_; ++i) {
-		MCMoveNoVerlet();
-	 }
-	}
 
 	// private variable
 
