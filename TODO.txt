@@ -1,0 +1,4 @@
+System:
+    - Test MCMoveNoVerlet
+	- RandomInit: make sure larger particle numbers are treated correctly,
+	  and initialize on a fcc lattice
