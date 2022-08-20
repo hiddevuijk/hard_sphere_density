@@ -24,7 +24,6 @@ double distance(Vec3 r1, Vec3 r2, double L)
 	return r1.Length();
 }
 
-template <class Potential>
 class System {
  public:
 	System(unsigned long int seed,
@@ -32,8 +31,7 @@ class System {
 		   double system_size_xy,
 		   double max_mc_step_size,
 		   double verlet_list_radius,
-		   double max_diff,
-		   Potential potential);
+		   double max_diff);
   void SavePositions(std::string name) const;		    
  private:
 	// uniform distribution [-1,1]
@@ -89,7 +87,6 @@ class System {
 	// is larger than max_diff_, the Verlet list needs to be updated
 	double max_diff_;	
 
-	Potential potential_;
 
 	// keep track of the performance of the MC algorithm
 	unsigned long int number_of_attempted_moves_;
@@ -98,15 +95,13 @@ class System {
 	
 };
 
-template <class Potential>
-System<Potential>::System(
+System::System(
 	unsigned long int seed,
 	unsigned int number_of_particles,
 	double system_size_xy,
 	double max_mc_step_size,
 	double verlet_list_radius,
-	double max_diff,
-    Potential potential)
+	double max_diff)
   : uniform_distribution_(-1,1),
     random_int_distribution_(0, number_of_particles),
 	random_number_generator_(seed),
@@ -122,15 +117,14 @@ System<Potential>::System(
     positions_at_last_update_(number_of_particles_),
 	verlet_list_(number_of_particles_,
 				std::vector<int>(number_of_particles)),
-	max_diff_(max_diff),
-	potential_(potential)
+	max_diff_(max_diff)
 {
   RandomInit();
   UpdateVerletList();
 }
 
-template <class Potential>
-void System<Potential>::RandomInit()
+
+void System::RandomInit()
 {
 
   std::vector<Vec3> lattice_positions;
@@ -166,15 +160,15 @@ void System<Potential>::RandomInit()
   }
 }
 
-template <class Potential>
-void System<Potential>::UpdateVerletList()
+
+void System::UpdateVerletList()
 {
 	
 }
 
 
-template <class Potential>
-void System<Potential>::MCMoveNoVerlet()
+
+void System::MCMoveNoVerlet()
 {
   number_of_attempted_moves_++;
 
@@ -210,8 +204,8 @@ void System<Potential>::MCMoveNoVerlet()
   }
 }
 
-template <class Potential>
-void System<Potential>::SavePositions(std::string name) const
+
+void System::SavePositions(std::string name) const
 {
   std::ofstream out;
   out.open(name);
