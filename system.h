@@ -1,6 +1,8 @@
 /*
  To do:
 	- fix initialization
+    - add Verlet algorithm
+    -- check GetPositions
 */
 
 
@@ -48,6 +50,8 @@ class System {
 
   void SetPotential(double newA) { A_ = newA; }
   double getPotential() const { return A_; }
+
+  const std::vector<Vec3>& GetPositions() const { return positions_; }
  private:
 	// uniform distribution [-1,1]
 	const boost::uniform_real<double> uniform_distribution_;
