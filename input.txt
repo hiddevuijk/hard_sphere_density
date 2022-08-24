@@ -4,11 +4,15 @@ system_size_xy = 50
 max_mc_step_size = 0.2
 verlet_list_radius = 6.0
 
-A = 3.0
+A = 1.1
 
 zlim = 10.0
 number_of_bins = 200
 
-initial_MC_moves = 1000
-MC_moves_per_sample = 50
-number_of_samples = 100
+initial_MC_moves = 100
+MC_moves_per_sample = 5
+number_of_samples = 50
+
+#initial_MC_moves = 1000
+#MC_moves_per_sample = 50
+#number_of_samples = 500

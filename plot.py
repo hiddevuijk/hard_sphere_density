@@ -2,22 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sys import exit
 
-rho = np.loadtxt("rhoz.dat")
+i = 5
+rho = np.loadtxt("rhoz{:d}.dat".format(i))
+x = rho[:,0]
+y = rho[:,1]
 plt.scatter(rho[:,0], rho[:,1])
 
-#rho = np.loadtxt("rhoz1.1.dat")
-#plt.scatter(rho[:,0], rho[:,1], label="1.1")
-#rho = np.loadtxt("rhoz1.5.dat")
-#plt.scatter(rho[:,0], rho[:,1], label="1.5")
-#plt.legend(title="A")
-dx = rho[1,0] - rho[0,0]
-norm =  dx * sum(rho[:,1])
-
-A = 1.5
-N = 1000
-x = np.linspace( rho[0,0]*1.1, rho[-1,0]*1.1, N)
-y = norm * np.exp( - A * x * x) * np.sqrt( A / np.pi)
-#plt.plot(x,y)
 
 dx = x[1] - x[0]
 print( dx * sum(y))
