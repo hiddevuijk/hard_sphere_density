@@ -72,10 +72,20 @@ int main()
   cout << (1.0 * system.GetNumberOfAcceptedMoves() ) /
 			system.GetNumberOfAttemptedMoves() << endl;
 
+
+  string density_name = "rhoz0.dat";
+  rho_z.Save(density_name);
+  rho_z.Reset();
+
   for (long unsigned int i = 0; i < number_of_samples; i++) {
-	//system.MCMoveNoVerletFull(MC_moves_per_sample);
-	system.MCMoveFull(MC_moves_per_sample);
-	rho_z.Sample(system.GetPositions());
+    //system.MCMoveNoVerletFull(MC_moves_per_sample);
+  	system.MCMoveFull(MC_moves_per_sample);
+    rho_z.Sample(system.GetPositions());
+
+    string density_name = "rhoz" + to_string(i) + ".dat";
+    rho_z.Save(density_name);
+    rho_z.Reset();
+
     cout << number_of_samples << "\t" << i << '\n';
   }
 
@@ -83,7 +93,7 @@ int main()
 			system.GetNumberOfAttemptedMoves() << endl;
 
   if(CheckOverlap(system.GetPositions(), system_size_xy ) ) cout << "FUCK" << endl;
-  rho_z.Save("rhoz.dat");
+
   system.SavePositions("positions.dat"); 
 
   cout << system.GetNumberOfAcceptedMoves() * 1.0
