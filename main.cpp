@@ -89,6 +89,8 @@ int main()
     cout << number_of_samples << "\t" << i << '\n';
   }
 
+
+  cout << "Monte-Carlo move acceptance rate:\n";
   cout << (1.0 * system.GetNumberOfAcceptedMoves() ) /
 			system.GetNumberOfAttemptedMoves() << endl;
 
@@ -96,10 +98,12 @@ int main()
 
   system.SavePositions("positions.dat"); 
 
+  cout << "Accepted moves per particle per Verlet list update:\n";
   cout << system.GetNumberOfAcceptedMoves() * 1.0
        / (system.GetNumberOfVerletListUpdates() * number_of_particles)
 	   << endl;
 
+  cout << "Attempted moves per particle per Verlet list update:\n";
   cout << system.GetNumberOfAttemptedMoves() * 1.0
        / (system.GetNumberOfVerletListUpdates() * number_of_particles)
 	   << endl;
