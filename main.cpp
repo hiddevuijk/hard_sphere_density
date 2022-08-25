@@ -68,9 +68,9 @@ int main()
   //system.MCMoveNoVerletFull(initial_MC_moves);
   system.MCMoveFull(initial_MC_moves);
 
-  cout << "Init done\n";
+  cout << "Init done\n" << flush;
   cout << (1.0 * system.GetNumberOfAcceptedMoves() ) /
-			system.GetNumberOfAttemptedMoves() << endl;
+			system.GetNumberOfAttemptedMoves() << endl << flush;
 
 
   string density_name = "rhoz0.dat";
@@ -86,27 +86,27 @@ int main()
     rho_z.Save(density_name);
     rho_z.Reset();
 
-    cout << number_of_samples << "\t" << i << '\n';
+    cout << number_of_samples << "\t" << i << '\n' << flush;
   }
 
 
-  cout << "Monte-Carlo move acceptance rate:\n";
+  cout << "Monte-Carlo move acceptance rate:\n" << flush;
   cout << (1.0 * system.GetNumberOfAcceptedMoves() ) /
-			system.GetNumberOfAttemptedMoves() << endl;
+			system.GetNumberOfAttemptedMoves() << endl << flush;
 
-  if(CheckOverlap(system.GetPositions(), system_size_xy ) ) cout << "FUCK" << endl;
+  if(CheckOverlap(system.GetPositions(), system_size_xy ) ) cout << "FUCK" << endl << flush;
 
   system.SavePositions("positions.dat"); 
 
-  cout << "Accepted moves per particle per Verlet list update:\n";
+  cout << "Accepted moves per particle per Verlet list update:\n" << flush;
   cout << system.GetNumberOfAcceptedMoves() * 1.0
        / (system.GetNumberOfVerletListUpdates() * number_of_particles)
-	   << endl;
+	   << endl << flush;
 
-  cout << "Attempted moves per particle per Verlet list update:\n";
+  cout << "Attempted moves per particle per Verlet list update:\n" << flush;
   cout << system.GetNumberOfAttemptedMoves() * 1.0
        / (system.GetNumberOfVerletListUpdates() * number_of_particles)
-	   << endl;
+	   << endl << flush;
 
   return 0;
 }
