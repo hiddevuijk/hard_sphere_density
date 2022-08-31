@@ -68,7 +68,9 @@ class System {
   }
 
   void SetPotential(double newA) { A_ = newA; }
-  double getPotential() const { return A_; }
+  double GetPotential() const { return A_; }
+  void SetPotentialExp(double newAexp) { Aexp_ = newAexp; }
+  double GetPotentialExp() const { return Aexp_; }
 
   std::vector<Vec3> GetPositions() const { return positions_; }
 
@@ -125,8 +127,11 @@ class System {
 	// is larger than max_diff_, the Verlet list needs to be updated
 	double max_diff_;	
 
-	// externale potential: U(z) = A_ * z * z
+	// externale potential: U(z) = A_ * z^2
 	double A_;
+  // external potential: U(z) = Aexp_ * exp( - 5 * z^2)
+	double Aexp_;
+
 
 	// keep track of the performance of the MC algorithm
 	unsigned long int number_of_attempted_moves_;
@@ -160,6 +165,7 @@ System::System(
 				std::vector<unsigned int>(number_of_particles)),
 	number_of_neighbors_(number_of_particles_),
 	A_(A),
+	Aexp_(0.0),
 	number_of_attempted_moves_(0),
 	number_of_accepted_moves_(0),
 	number_of_verlet_list_updates_(0)
@@ -258,8 +264,14 @@ void System::MCMove()
 	}
   }
   if (!overlap) {
+
+    // harmonic potential
     double delta_U = A_ * new_position.z * new_position.z;
     delta_U -= A_ * positions_[i].z * positions_[i].z;   
+    // exponential potential
+    delta_U += Aexp_ * std::exp( - 5 * new_position.z * new_position.z);
+    delta_U -= Aexp_ * std::exp( - 5 * positions_[i].z * positions_[i].z);
+
 	if( random_uniform_distribution_01_() < std::exp(- delta_U ) ) {
 		positions_[i] = new_position;
 

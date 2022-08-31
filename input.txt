@@ -1,13 +1,14 @@
 seed = 123456780
 number_of_particles = 5000
-system_size_xy = 50
+system_size_xy = 44.721359549995796 
 max_mc_step_size = 0.2
-verlet_list_radius = 6.0
+verlet_list_radius = 5.5
 
 A = 1.1
+Ae = 5.0
 
 zlim = 10.0
-number_of_bins = 200
+number_of_bins = 400
 
 initial_MC_moves = 100
 MC_moves_per_sample = 5

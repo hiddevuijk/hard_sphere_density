@@ -45,6 +45,7 @@ int main()
 
 
   double A = params.get_parameter<double>("A");
+  double Ae = params.get_parameter<double>("Ae");
 
   long unsigned int MC_moves_per_sample = params.get_parameter<long unsigned int>("MC_moves_per_sample");
 
@@ -58,11 +59,13 @@ int main()
 
   System system(seed, number_of_particles, system_size_xy,
 					max_mc_step_size, verlet_list_radius, A);
+  system.SetPotentialExp(Ae);
 
   double area = system_size_xy * system_size_xy;
   Density rho_z(-zlim, zlim, number_of_bins, 'z', area);
 
-  system.SavePositions("positions0.dat"); 
+  string positions_name = "positions0.dat";
+  system.SavePositions(positions_name); 
 
 
   //system.MCMoveNoVerletFull(initial_MC_moves);
@@ -92,7 +95,8 @@ int main()
 
   if(CheckOverlap(system.GetPositions(), system_size_xy ) ) cout << "FUCK" << endl << flush;
 
-  system.SavePositions("positions.dat"); 
+  positions_name = "positions.dat";
+  system.SavePositions(positions_name); 
 
   cout << "Accepted moves per particle per Verlet list update:\n" << flush;
   cout << system.GetNumberOfAcceptedMoves() * 1.0
